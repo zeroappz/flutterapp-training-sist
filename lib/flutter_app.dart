@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/view/tab_screens/courses_screen.dart';
+import 'package:flutterapp/view/tab_screens/home_screen.dart';
+import 'package:flutterapp/view/tab_screens/my_profile_screen.dart';
+import 'package:flutterapp/view/tab_screens/settings_screen.dart';
+import 'package:flutterapp/view/tab_screens/splash_screen.dart';
+import 'package:flutterapp/widgets/side_menu_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -12,6 +18,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 10; // integer variable
 
+  int _page = 0; // integer variable,
+
   void _incrementCounter() {
     // function definition : void functionName(){}
     // setState((){}) is a function that triggers a re-render of the widget
@@ -22,6 +30,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    List _currentScreen = [
+      const HomeScreen(), // 0th index of _currentScreen
+      const CoursesScreen(), // 1st index of _currentScreen
+      const MyProfileScreen(), // 2nd index of _currentScreen
+      const SettingsScreen(), // 3rd index of _currentScreen
+      const TabSplashScreen(), // 4th index of _currentScreen
+    ];
+
     return Scaffold(
       // Scaffold is a widget that provides a default app bar and drawer.
       // appBar
@@ -29,65 +45,81 @@ class _MyHomePageState extends State<MyHomePage> {
       // floatingActionButton
       // drawer
       // bottomNavigationBar
-      appBar: AppBar(
-        title: Text(widget.title),
-        // title: Text("Flutter App Text"),
-        backgroundColor: Colors.pinkAccent,
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {
-            debugPrint("Menu Icon pressed");
-          },
-        ),
-        actions: [
-          // action: [] is a list of widgets
-          IconButton(icon: Icon(Icons.add), onPressed: _incrementCounter),
-          IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: () {
-              setState(() {
-                if (_counter > 0) {
-                  _counter--;
-                } else {
-                  _counter = 0;
-                  debugPrint("Counter is at 0, no more decrement is happening");
-                }
-              });
-              debugPrint("Decrement with Delete Button pressed");
-            },
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          // Column is a widget that displays its children in a vertical or horizontal arrangement.
-          // child - single child widget
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // <T> - type of the child widget : <Widget>
-            const Text(
-              'Static data in text format..',
-            ),
-            Text(
-              '$_counter',
-              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        // onPressed: _incrementCounter,
-        onPressed: () {
-          setState(() {
-            _counter++;
-          });
-          debugPrint("Floating Action Button pressed");
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+
+      // Ternary Operator
+      // condition ? value_if_true : value_if_false
+      appBar: _page != 2
+          ? AppBar(
+              title: Text(widget.title),
+              // title: Text("Flutter App Text"),
+              backgroundColor: Colors.pinkAccent,
+              // leading: IconButton(
+              //   icon: Icon(Icons.menu),
+              //   onPressed: () {
+              //     debugPrint("Menu Icon pressed");
+              //   },
+              // ),
+              actions: [
+                // action: [] is a list of widgets
+                IconButton(icon: Icon(Icons.add), onPressed: _incrementCounter),
+                IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () {
+                    setState(() {
+                      if (_counter > 0) {
+                        _counter--;
+                      } else {
+                        _counter = 0;
+                        debugPrint(
+                            "Counter is at 0, no more decrement is happening");
+                      }
+                    });
+                    debugPrint("Decrement with Delete Button pressed");
+                  },
+                ),
+              ],
+            )
+          : null,
+      drawer: const SideMenu(),
+      body:
+          _currentScreen[_page], // list[0], list[1], list[2], list[3], list[4]
+
+      // Center(
+      //   child: Column(
+      // Column is a widget that displays its children in a vertical or horizontal arrangement.
+      // child - single child widget
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
+      // <T> - type of the child widget : <Widget>
+      //       const Text(
+      //         'Static data in text format..',
+      //       ),
+      //       Text(
+      //         '$_counter',
+      //         style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+      //       ),
+      //     ],
+      //   ),
+      // ),
+      floatingActionButton: _page == 0
+          ? FloatingActionButton(
+              // onPressed: _incrementCounter,
+              onPressed: () {
+                setState(() {
+                  _counter++;
+                });
+                debugPrint("Floating Action Button pressed");
+              },
+              tooltip: 'Increment',
+              child: const Icon(Icons.add),
+            )
+          : null, // This leading comma makes auto-formatting nicer for build methods.
       bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+
+          // BottomNavigationBar is a widget that displays a list of items as
+          // a horizontal bar. The items are usually widgets that react to being
+          // tapped.
+          items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
@@ -104,6 +136,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Icon(Icons.settings),
                 label: 'Settings',
                 backgroundColor: Colors.pinkAccent),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_box),
+                label: 'Splash',
+                backgroundColor: Colors.pinkAccent),
           ],
           currentIndex: 0,
           selectedItemColor: Colors.white,
@@ -111,38 +147,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 // print("Tapped on $index")
                 debugPrint("Tapped on $index"),
                 setState(
-                  () => {
-                    _counter = index
-                  },
+                  () => {_page = index},
                 )
               }),
     );
   }
 }
 
-// Stateless Widget
-// class SplashScreen extends StatelessWidget {
-//   const SplashScreen({Key? key}) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
 
-// class SplashScreen extends StatefulWidget {
-//   const SplashScreen({ Key? key }) : super(key: key);
-
-//   @override
-//   State<SplashScreen> createState() => _SplashScreenState();
-//   // dynamic interpolation
-// }
-
-// class _SplashScreenState extends State<SplashScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-      
-//     );
-//   }
-// }
+/// items: [0, 1, 2, 3, 4] is a list of widgets from bottomNavigationBar
+/// _currentScreen = [0, 1, 2, 3, 4] is a list of widgets from body
