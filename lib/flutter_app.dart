@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutterapp/view/tab_screens/courses_screen.dart';
-import 'package:flutterapp/view/tab_screens/home_screen.dart';
-import 'package:flutterapp/view/tab_screens/my_profile_screen.dart';
-import 'package:flutterapp/view/tab_screens/settings_screen.dart';
-import 'package:flutterapp/view/tab_screens/splash_screen.dart';
-import 'package:flutterapp/widgets/side_menu_widget.dart';
+// import 'package:flutter/material.dart';
+// import '../view/tab_screens/courses_screen.dart';
+// import '../view/tab_screens/home_screen.dart';
+// import '../view/tab_screens/my_profile_screen.dart';
+// import '../view/tab_screens/settings_screen.dart';
+// import '../view/tab_screens/splash_screen.dart';
+// import '../widgets/side_menu_widget.dart';
+
+import '../../values/app_lib.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);

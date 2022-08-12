@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import '../../values/app_lib.dart';
 
 class TabSplashScreen extends StatefulWidget {
   const TabSplashScreen({Key? key}) : super(key: key);

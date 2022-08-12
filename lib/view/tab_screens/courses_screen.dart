@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import '../../values/app_lib.dart';
 
 class CoursesScreen extends StatefulWidget {
   const CoursesScreen({Key? key}) : super(key: key);

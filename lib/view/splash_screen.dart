@@ -1,5 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutterapp/flutter_app.dart';
+// import 'package:flutter/material.dart';
+// import '../flutter_app.dart';
+
+/// Instead of importing all the routes, we can create our own library and import it.
+// import '../values/colors.dart';
+// import '../values/dimensions.dart';
+// import '../values/images.dart';
+// import '../values/strings.dart';
+
+/// Our Own Library
+// import '../values/values.dart';
+
+import '../../values/app_lib.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,11 +28,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   init() async {
     await Future.delayed(
-      Duration(seconds: 3),
+      const Duration(seconds: 3),
     );
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => MyHomePage(title: 'Flutter App'),
+        builder: (context) => const MyHomePage(title: StringConstants.appName),
       ),
     );
   }
@@ -33,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
       return Scaffold(
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Image(
-            image: const AssetImage('assets/images/trans.png'),
+            image: const AssetImage(ImagesPath.transparentLogo),
 
             // step 1: create assets folder
             // step 2: create logo.png in assets folder
@@ -45,10 +56,10 @@ class _SplashScreenState extends State<SplashScreen> {
             height: MediaQuery.of(context).size.height * 0.33,
           ),
           const SizedBox(
-            height: 20.0,
+            height: Sizes.medium,
           ), // create empty spaces
           const Text(
-            "AlgoxFusion App",
+            StringConstants.appName,
             style: TextStyle(
               fontSize: 30.0,
               fontWeight: FontWeight.bold,
@@ -56,14 +67,14 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
           const SizedBox(
-            height: 20.0,
+            height: Sizes.medium,
           ),
           const Text(
-            "Learn Flutter through online LMS",
+            StringConstants.appDesc,
             style: TextStyle(
-              fontSize: 16.0,
+              fontSize: Sizes.largeFontSize,
               fontWeight: FontWeight.normal,
-              color: Colors.pinkAccent,
+              color: AppColors.primaryColor,
             ),
           ),
         ]),

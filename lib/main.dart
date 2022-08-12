@@ -1,16 +1,12 @@
-import 'package:flutter/material.dart';
-// import 'package:flutterapp/view/splash_screen.dart';
-import '../view/splash_screen.dart';
+import '../values/app_lib.dart';
+
 // Android Material Design Components
 // import 'package:flutter/cupertino.dart';
 // iOS Cupertino Components
 
-import 'flutter_app.dart';
-
 void main() {
-  runApp(
-    FlutterApp() // instantiate the app
-  );
+  runApp(FlutterApp() // instantiate the app
+      );
 }
 
 class FlutterApp extends StatelessWidget {
@@ -20,13 +16,13 @@ class FlutterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
-      title: 'Flutter App',
+      debugShowCheckedModeBanner: false,
+      title: StringConstants.appName,
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
       // home: const MyHomePage(title: 'Flutter App'),
-      home: const SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }

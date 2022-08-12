@@ -28,3 +28,9 @@ samples, guidance on mobile development, and a full API reference.
     - bottomNavigationBar
     - Ternary Operator
     - condition ? value_if_true : value_if_false
+
+## Create own Library
+    - Making any folder as a library
+    - Step 1: create an empty file and mention: library library_name;
+        - keep all your required imports in it
+    - Step 2: Make every file as apart of this library
