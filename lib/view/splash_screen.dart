@@ -32,7 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
     );
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => const MyHomePage(title: StringConstants.appName),
+        // builder: (context) => const MyHomePage(title: StringConstants.appName),
+        builder: (context) => const OnBoardingScreen(),
       ),
     );
   }

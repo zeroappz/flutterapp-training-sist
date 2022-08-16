@@ -34,3 +34,15 @@ samples, guidance on mobile development, and a full API reference.
     - Step 1: create an empty file and mention: library library_name;
         - keep all your required imports in it
     - Step 2: Make every file as apart of this library
+
+## Other Widgets
+    - SafeArea() - This will be handling notches
+    - Expanded() - 
+    - AnimatedContainer() is used to create a container that animates its height and width
+    - EdgeInsets() - symmetric(vertical, horizontal) - Padding the widgets
+    - EdgeInsets() - all(top, right, bottom, left)
+    - BorderRadius() - to set the border radius according to the design
+    - Padding()
+    - Fluttertoast() - Pop up message shown in any of the corner in your screen
+    - ElevatedButton()
+    - PageController()
