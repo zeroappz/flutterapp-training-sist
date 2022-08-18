@@ -19,4 +19,7 @@ class StringConstants {
     "Algoxfusion is an online learning platform for learning programming.",
     "Algoxfusion is an online learning platform for learning programming."
   ];
+
+  static const String login = 'Login';
+  static const String register = 'Register';
 }

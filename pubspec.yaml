@@ -14,6 +14,8 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   fluttertoast: ^8.0.9
+  font_awesome_flutter: 10.1.0
+  lottie: ^1.4.1
   # package: empty, any, exact version, relative version
 
 dev_dependencies:

@@ -5,6 +5,8 @@ export 'dart:io';
 
 /// Flutter Libraries
 export 'package:flutter/material.dart';
+export 'package:font_awesome_flutter/font_awesome_flutter.dart';
+export 'package:lottie/lottie.dart';
 
 /// App Libraries
 // export '../values/values.dart';

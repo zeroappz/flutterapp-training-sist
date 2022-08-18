@@ -1,3 +1,4 @@
+import 'package:flutterapp/view/auth/login.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../values/app_lib.dart';
@@ -131,7 +132,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        MyHomePage(title: 'Algofusion App'),
+                                        // MyHomePage(title: 'Algofusion App'),
+                                        const LoginScreen(),
                                   ),
                                   (route) => false);
                             },
