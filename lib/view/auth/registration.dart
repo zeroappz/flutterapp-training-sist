@@ -1,13 +1,13 @@
-import 'package:flutterapp/view/auth/registration.dart';
+import 'package:flutterapp/view/auth/login.dart';
 
 import '../../values/app_lib.dart';
 
-class LoginScreen extends StatelessWidget {
-  void clickLogin() {
-    debugPrint("Clicked Login");
+class Registration extends StatelessWidget {
+  void clickSignUp() {
+    debugPrint("Clicked SignUp");
   }
 
-  const LoginScreen({Key? key}) : super(key: key);
+  const Registration({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  clickLogin();
+                  clickSignUp();
                 },
                 child: SizedBox(
                   height: 200,
@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                       height: 16.0,
                     ),
                     const Text(
-                      'Please login to continue',
+                      'Please Register to continue',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -111,6 +111,25 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(
+                      height: 16.0,
+                    ),
+                    Container(
+                      height: 56.0,
+                      width: MediaQuery.of(context).size.width * 0.66,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          labelText: 'Confirm Password',
+                          suffix: FaIcon(
+                            FontAwesomeIcons.eyeSlash,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
                       child: Row(
@@ -122,15 +141,13 @@ class LoginScreen extends StatelessWidget {
                               Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MyHomePage(
-                                    title: 'Algoxfusion App',
-                                  ),
+                                  builder: (context) => LoginScreen(),
                                 ),
                                 (Route<dynamic> route) => false,
                               );
                             },
                             child: const Text(
-                              'Forgot Password?',
+                              'Try Login?',
                               style: TextStyle(color: Colors.red),
                             ),
                           ),
@@ -141,22 +158,7 @@ class LoginScreen extends StatelessWidget {
                       height: 16.0,
                     ),
                     ElevatedButton(
-                      onPressed: clickLogin,
-                      child: const Text('Login'),
-                    ),
-                    const SizedBox(
-                      height: 16.0,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Registration(),
-                          ),
-                          (Route<dynamic> route) => false,
-                        );
-                      },
+                      onPressed: clickSignUp,
                       child: const Text('Sign Up'),
                     ),
                     // InkWell(
@@ -179,48 +181,6 @@ class LoginScreen extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(
-                      height: 16.0,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            debugPrint('Facebook');
-                          },
-                          child: Container(
-                            height: 56.0,
-                            width: 60.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.blue,
-                            ),
-                            child: Icon(
-                              FontAwesomeIcons.facebookF,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            debugPrint('Google');
-                          },
-                          child: Container(
-                            height: 56.0,
-                            width: 60.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.red,
-                            ),
-                            child: Icon(
-                              FontAwesomeIcons.google,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
                   ],
                 ),
               ),
