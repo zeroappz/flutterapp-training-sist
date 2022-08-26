@@ -1,4 +1,5 @@
 import '../../values/app_lib.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     selectedType = type;
     debugPrint("Selected Type: $selectedType");
     debugPrint("*****************");
-    setState(() {});
+    setState(() {}); // Setting up things to get reflected in app screens
   }
 
   changeDirectors(String directorName) {
@@ -50,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // ),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(16.0),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -61,6 +62,32 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: ListView(
           children: [
+            SizedBox(
+              height: 230.0,
+              width: MediaQuery.of(context).size.width,
+              child: Carousel(
+                autoplay: true,
+                animationDuration: const Duration(milliseconds: 4000),
+                animationCurve: Curves.easeOutBack,
+                dotBgColor: Colors.transparent,
+                dotColor: Colors.pinkAccent,
+                boxFit: BoxFit.fill,
+                indicatorBgPadding: 6.0,
+                dotSize: 6.0,
+                images: const [
+                  AssetImage("assets/images/image1.png"),
+                  AssetImage("assets/images/image2.png"),
+                  AssetImage("assets/images/image3.png"),
+                  AssetImage("assets/images/image1.png"),
+                  AssetImage("assets/images/image2.png"),
+                  AssetImage("assets/images/image3.png"),
+                  // NetworkImage("")
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
             const Text(
               "Choose Your Preferences",
               style: TextStyle(
@@ -304,11 +331,12 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                dynamicWidget("Bahubali"),
-                dynamicWidget("Robot"),
-                dynamicWidget('King Kong'),
-                dynamicWidget("Vikram"),
-                dynamicWidget("Anjaan"),
+                dynamicWidget("Bahubali", true),
+                dynamicWidget("Robot", false),
+                dynamicWidget('King Kong', true),
+                dynamicWidget("Vikram", false),
+                dynamicWidget("Anjaan", false),
+                // dynamicWidget("Don", false),
               ],
             )
           ],
@@ -317,20 +345,20 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Column dynamicWidget(String name) {
+  Column dynamicWidget(String name, bool isSelected) {
     return Column(children: [
       Stack(
         children: [
           Container(
             height: 70.0,
             width: 70.0,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.pinkAccent,
             ),
             child: Container(
-              margin: EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
+              margin: const EdgeInsets.all(8.0),
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage("assets/images/image2.png"),
                     fit: BoxFit.contain),
@@ -338,15 +366,38 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           // const SizedBox(height: 20.0),
-          // Text(
-          //   name,
-          //   style: TextStyle(
-          //     fontSize: 16.0,
-          //     fontWeight: FontWeight.w500,
-          //   ),
-          // ),
+          Positioned(
+            top: -2,
+            right: 42,
+            child: isSelected == true
+                ? Container(
+                    height: 30,
+                    width: 30,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.check_circle,
+                        color: Colors.pink[400],
+                      ),
+                    ),
+                  )
+                : Container(),
+          ), // Positioned according to our requirements
         ],
-      )
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      Text(
+        name,
+        style: const TextStyle(
+          fontSize: 16.0,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
     ]);
   }
 }

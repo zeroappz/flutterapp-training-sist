@@ -20,7 +20,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 10; // integer variable
 
-  int _page = 0; // integer variable,
+  int _page = 2; // integer variable,
 
   void _incrementCounter() {
     // function definition : void functionName(){}
