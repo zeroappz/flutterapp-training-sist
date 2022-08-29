@@ -22,6 +22,11 @@ export '../view/tab_screens/my_profile_screen.dart';
 export '../view/tab_screens/settings_screen.dart';
 export '../view/tab_screens/splash_screen.dart';
 export '../view/onboarding/onboarding_screen.dart';
+export '../view/reports_screen.dart';
 
 /// Application Widgets
 export '../widgets/side_menu_widget.dart';
+export '../widgets/global_widget.dart';
+
+// Models
+export '../models/sales_report_model.dart';

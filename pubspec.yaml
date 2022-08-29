@@ -17,6 +17,7 @@ dependencies:
   font_awesome_flutter: 10.1.0
   lottie: ^1.4.1
   carousel_pro:
+  charts_flutter:
   # package: empty, any, exact version, relative version
 
 dev_dependencies:

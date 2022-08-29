@@ -5,8 +5,9 @@ import '../values/app_lib.dart';
 // iOS Cupertino Components
 
 void main() {
-  runApp(FlutterApp() // instantiate the app
-      );
+  runApp(
+    FlutterApp(), // instantiate the app
+  );
 }
 
 class FlutterApp extends StatelessWidget {
@@ -21,8 +22,8 @@ class FlutterApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: const MyHomePage(title: 'Flutter App'),
-      // home: SplashScreen(),
+      // home: const MyHomePage(title: 'Flutter App'),
+      home: ReportingScreen(),
     );
   }
 }
