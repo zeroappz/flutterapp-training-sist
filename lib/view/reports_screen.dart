@@ -29,12 +29,12 @@ class _ReportingScreenState extends State<ReportingScreen> {
   ];
 
   final List<BookingReportModel> _dataColor = [
-    BookingReportModel("2014", 50, Colors.red),
-    BookingReportModel("2015", 80, Colors.green),
-    BookingReportModel("2016", 160, Colors.blue),
-    BookingReportModel("2017", 70, Colors.yellow),
-    BookingReportModel("2018", 150, Colors.pink),
-    BookingReportModel("2019", 40, Colors.orange),
+    BookingReportModel("Doctor Appointment", 50, Colors.red),
+    BookingReportModel("Consultation", 80, Colors.green),
+    BookingReportModel("Ortho", 160, Colors.blue),
+    BookingReportModel("Pediatrician", 70, Colors.yellow),
+    BookingReportModel("Gynecology", 150, Colors.pink),
+    BookingReportModel("ENT", 40, Colors.orange),
     // BookingReportModel("2020", 240),
   ];
 
@@ -110,10 +110,10 @@ class _ReportingScreenState extends State<ReportingScreen> {
               ),
             ),
             _globalWidget.createDetailWidget(
-                "Booking Report", "Booking report in Pie Chart"),
+                "Booking Report", "Booking report in Donut Colors Chart"),
             Container(
               margin: const EdgeInsets.symmetric(
-                vertical: 8.0,
+                vertical: 18.0,
               ),
               child: SizedBox(
                 height: 400.0,
@@ -126,6 +126,40 @@ class _ReportingScreenState extends State<ReportingScreen> {
                     ],
                     arcWidth: 100, // make pie chart as a donut chart),
                   ),
+                ),
+              ),
+            ),
+            _globalWidget.createDetailWidget(
+                "Trim Booking Report", "Booking report in Pie Colors Chart"),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                vertical: 18.0,
+              ),
+              child: SizedBox(
+                height: 400.0,
+                child: charts.PieChart<String>(
+                  _seriesColor,
+                  animate: true,
+                  defaultRenderer: charts.ArcRendererConfig(
+                    arcRendererDecorators: [
+                      charts.ArcLabelDecorator(),
+                    ],
+                    // arcWidth: 100, // make pie chart as a donut chart),
+                  ),
+                  behaviors: [
+                    charts.DatumLegend(
+                      horizontalFirst: false,
+                      desiredMaxRows: 3,
+                      // position: charts.BehaviorPosition.end,
+                      showMeasures: true,
+                      // Configure the measure value to be shown by default in the legend.
+                      legendDefaultMeasure:
+                          charts.LegendDefaultMeasure.firstValue,
+                      measureFormatter: (num? value) {
+                        return ': ' + value.toString();
+                      },
+                    )
+                  ],
                 ),
               ),
             ),

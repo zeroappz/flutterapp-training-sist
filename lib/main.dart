@@ -1,3 +1,5 @@
+import 'package:flutterapp/view/grid_view.dart/grid_view_list.dart';
+
 import '../values/app_lib.dart';
 
 // Android Material Design Components
@@ -23,7 +25,7 @@ class FlutterApp extends StatelessWidget {
         primarySwatch: Colors.pink,
       ),
       // home: const MyHomePage(title: 'Flutter App'),
-      home: ReportingScreen(),
+      home: GridViewScreenList(),
     );
   }
 }
