@@ -1,5 +1,4 @@
-import 'package:flutterapp/values/app_lib.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import '../values/app_lib.dart';
 
 class DynamicScreen extends StatefulWidget {
   const DynamicScreen({Key? key}) : super(key: key);

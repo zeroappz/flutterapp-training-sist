@@ -1,6 +1,3 @@
-import 'package:flutterapp/view/auth/login.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../values/app_lib.dart';
 
 class OnBoardingScreen extends StatefulWidget {

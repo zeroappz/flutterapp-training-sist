@@ -10,4 +10,40 @@ class ImagesPath {
     'assets/images/image2.png',
     'assets/images/image3.png'
   ];
+  
+
+  static const imgList = [
+    "https://bit.ly/3wf6YrC",
+    "https://bit.ly/3id0D7V",
+    "https://bit.ly/3Jmpa6z",
+    "https://bit.ly/3CNs41I",
+    "https://bit.ly/3MUBY6e",
+    "https://bit.ly/3KStA5g",
+    "https://bit.ly/366oUKu",
+    "https://bit.ly/3id0OjB",
+    "https://bit.ly/3wf6YrC",
+    "https://bit.ly/3id0D7V",
+    "https://bit.ly/3Jmpa6z",
+    "https://bit.ly/3CNs41I",
+    "https://bit.ly/3MUBY6e",
+    "https://bit.ly/3KStA5g",
+    "https://bit.ly/366oUKu",
+    "https://bit.ly/3id0OjB",
+    "https://bit.ly/3wf6YrC",
+    "https://bit.ly/3id0D7V",
+    "https://bit.ly/3Jmpa6z",
+    "https://bit.ly/3CNs41I",
+    "https://bit.ly/3MUBY6e",
+    "https://bit.ly/3KStA5g",
+    "https://bit.ly/366oUKu",
+    "https://bit.ly/3id0OjB",
+    "https://bit.ly/3wf6YrC",
+    "https://bit.ly/3id0D7V",
+    "https://bit.ly/3Jmpa6z",
+    "https://bit.ly/3CNs41I",
+    "https://bit.ly/3MUBY6e",
+    "https://bit.ly/3KStA5g",
+    "https://bit.ly/366oUKu",
+    "https://bit.ly/3id0OjB",
+  ]; // List<String>
 }

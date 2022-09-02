@@ -18,7 +18,8 @@ dependencies:
   lottie: ^1.4.1
   carousel_pro:
   charts_flutter:
-  staggered_grid_view_flutter: 
+  flutter_staggered_grid_view: 
+  waterfall_flow: 
   # package: empty, any, exact version, relative version
 
 dev_dependencies:

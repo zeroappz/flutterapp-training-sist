@@ -1,7 +1,6 @@
-import 'package:flutterapp/values/app_lib.dart';
-import 'package:flutterapp/view/grid_view.dart/staggered_grid.dart';
-import 'package:flutterapp/view/grid_view.dart/waterfall_grid.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import '../../values/app_lib.dart';
+import 'staggered_grid.dart';
+import 'waterfall_grid.dart';
 
 class GridViewScreenList extends StatefulWidget {
   const GridViewScreenList({Key? key}) : super(key: key);

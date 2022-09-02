@@ -141,3 +141,5 @@ class GlobalWidget {
     );
   }
 }
+
+class NetworkImagesData {}
