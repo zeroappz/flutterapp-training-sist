@@ -46,3 +46,13 @@ samples, guidance on mobile development, and a full API reference.
     - Fluttertoast() - Pop up message shown in any of the corner in your screen
     - ElevatedButton()
     - PageController()
+
+## Global package and bundle id rename package
+    - add rename package in pubspec.yaml
+    - flutter pub global activate rename
+    - flutter pub global run rename --bundleId "com.algoxfusion.sist"
+    - flutter pub global run rename --appname "Algoxfusion Sist"
+
+## Generate SHA fingerprint keys for application
+    - cd android
+    - ./gradlew signingReport 

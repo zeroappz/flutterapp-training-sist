@@ -20,6 +20,7 @@ dependencies:
   charts_flutter:
   flutter_staggered_grid_view: 
   waterfall_flow: 
+  rename:
   # package: empty, any, exact version, relative version
 
 dev_dependencies:

@@ -3,5 +3,6 @@
         "Algoxfusion",
         "Cupertino",
         "flutterapp"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

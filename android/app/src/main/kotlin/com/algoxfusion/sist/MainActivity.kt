@@ -1,4 +1,4 @@
-package com.example.flutterapp
+package com.algoxfusion.sist
 
 import io.flutter.embedding.android.FlutterActivity
 

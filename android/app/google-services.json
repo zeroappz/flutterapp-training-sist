@@ -1,0 +1,40 @@
+{
+    "project_info": {
+        "project_number": "888498729088",
+        "project_id": "algoxfusion-training",
+        "storage_bucket": "algoxfusion-training.appspot.com"
+    },
+    "client": [{
+        "client_info": {
+            "mobilesdk_app_id": "1:888498729088:android:a23063e3c59f16afdb7665",
+            "android_client_info": {
+                "package_name": "com.algoxfusion.sist"
+            }
+        },
+        "oauth_client": [{
+                "client_id": "888498729088-9v951r3bseuls8i9upebecicq1urm943.apps.googleusercontent.com",
+                "client_type": 1,
+                "android_info": {
+                    "package_name": "com.algoxfusion.sist",
+                    "certificate_hash": "cab7567058042e70a5565bea0c50004cdbbcb4ed"
+                }
+            },
+            {
+                "client_id": "888498729088-ig8qgu0la2cb287rddhstdmfrh7qog3a.apps.googleusercontent.com",
+                "client_type": 3
+            }
+        ],
+        "api_key": [{
+            "current_key": "AIzaSyBDZ6OybuRPI4axy6hFPkRNVcjUYW6c7y4"
+        }],
+        "services": {
+            "appinvite_service": {
+                "other_platform_oauth_client": [{
+                    "client_id": "888498729088-ig8qgu0la2cb287rddhstdmfrh7qog3a.apps.googleusercontent.com",
+                    "client_type": 3
+                }]
+            }
+        }
+    }],
+    "configuration_version": "1"
+}
