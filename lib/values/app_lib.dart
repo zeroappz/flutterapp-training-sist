@@ -26,6 +26,7 @@ export '../view/tab_screens/splash_screen.dart';
 export '../view/onboarding/onboarding_screen.dart';
 export '../view/reports_screen.dart';
 export '../view/auth/login.dart';
+export '../view/grid_view.dart/grid_view_list.dart';
 
 /// Application Widgets
 export '../widgets/side_menu_widget.dart';

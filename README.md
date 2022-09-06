@@ -56,3 +56,9 @@ samples, guidance on mobile development, and a full API reference.
 ## Generate SHA fingerprint keys for application
     - cd android
     - ./gradlew signingReport 
+
+
+## Changing the App Icon
+    - launcher icon using the following commands
+    - [Flutter Launcher Icon Package](https://pub.dev/packages/flutter_launcher_icons)
+    - flutter pub run flutter_launcher_icons:main
