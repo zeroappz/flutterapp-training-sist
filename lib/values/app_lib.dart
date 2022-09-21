@@ -9,6 +9,11 @@ export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 export 'package:lottie/lottie.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+export 'package:flutter/services.dart';
+
+/// Firebase Plugins
+export 'package:firebase_crashlytics/firebase_crashlytics.dart';
+export 'package:firebase_core/firebase_core.dart';
 
 /// App Libraries
 // export '../values/values.dart';

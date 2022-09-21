@@ -1,5 +1,4 @@
-// import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-// import 'package:flutter/services.dart';
+import '../services/notify_service.dart';
 
 import '../values/app_lib.dart';
 
@@ -7,27 +6,34 @@ import '../values/app_lib.dart';
 // import 'package:flutter/cupertino.dart';
 // iOS Cupertino Components
 
+AndroidNotificationChannel channel;
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
 Future<void> main() async {
   //asynchronous
   await runZonedGuarded(() async {
-    // WidgetsFlutterBinding.ensureInitialized();
+    WidgetsFlutterBinding.ensureInitialized();
 
     // Initialize Firebase
-    // await Firebase.initializeApp();
+    await Firebase.initializeApp();
 
-    // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-    // (value) =>
-    runApp(
-      FlutterApp(), // instantiate the app
+    // Initialize the local notification service
+    LocalNotificationService.init();
+
+    //App screen orientation : landscape or portrait
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+      (value) => runApp(
+        FlutterApp(), // instantiate the app
+      ),
     );
-    // );
   }, (error, stackTrace) {
-    // FirebaseCrashlytics.instance.recordError(error, stackTrace);
+    FirebaseCrashlytics.instance.recordError(error, stackTrace);
+    debugPrint("*********" + error.toString());
   });
 }
 
 class FlutterApp extends StatelessWidget {
-  const FlutterApp({Key? key}) : super(key: key);
+  FlutterApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
