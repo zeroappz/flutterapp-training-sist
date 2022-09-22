@@ -1,3 +1,5 @@
+import 'package:flutterapp/view/notifications.dart';
+
 import '../services/notify_service.dart';
 
 import '../values/app_lib.dart';
@@ -6,8 +8,8 @@ import '../values/app_lib.dart';
 // import 'package:flutter/cupertino.dart';
 // iOS Cupertino Components
 
-AndroidNotificationChannel channel;
-FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+// AndroidNotificationChannel channel;
+// FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
 Future<void> main() async {
   //asynchronous
@@ -18,7 +20,7 @@ Future<void> main() async {
     await Firebase.initializeApp();
 
     // Initialize the local notification service
-    LocalNotificationService.init();
+    LocalNotificationService().init();
 
     //App screen orientation : landscape or portrait
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
@@ -45,7 +47,7 @@ class FlutterApp extends StatelessWidget {
         primarySwatch: Colors.pink,
       ),
       // home: const MyHomePage(title: 'Flutter App'),
-      home: SplashScreen(),
+      home: PushNotifications(),
     );
   }
 }
