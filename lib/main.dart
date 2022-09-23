@@ -1,9 +1,9 @@
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutterapp/view/notifications.dart';
+// import 'package:flutterapp/view/notifications.dart';
 import '../services/notify_service.dart';
-import 'package:firebase_core/firebase_core.dart';
-
 import '../values/app_lib.dart';
 
 // Android Material Design Components
@@ -11,24 +11,16 @@ import '../values/app_lib.dart';
 // iOS Cupertino Components
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
-  'high_importance_channel',
-  'High Importance Notification',
-  importance: Importance.high,
-  playSound: true,
-);
-
+    'high_importance_channel', // id
+    'High Importance Notifications', // title// description
+    importance: Importance.high,
+    playSound: true);
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-//We are gonna capture the remote notification even if it from background
-Future<dynamic> _firebaseMessagingBackgroundHandler(
-    RemoteMessage message) async {
-  // Initialize Firebase
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  debugPrint("******************");
-  debugPrint(" Background message has been captured : ${message.messageId}");
-  debugPrint(" Background message has been captured : ${message.data}");
-  debugPrint("******************");
+  print('A bg message just showed up :  ${message.messageId}');
 }
 
 Future<void> main() async {
@@ -39,27 +31,23 @@ Future<void> main() async {
     // Initialize Firebase
     await Firebase.initializeApp();
 
-    // Initialize the local notification service using Factory method-Singleton class
+    // Initialize the local notification service
     LocalNotificationService().init();
 
-    // Initiate Firebase Remote Messaging
+    // Firebase Messaging
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    debugPrint("error check");
 
-    // to push it local notification
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
-    debugPrint("error check1");
-    // Load instances of FirebaseMessaging
+
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
       sound: true,
     );
-    debugPrint("error check2");
 
     //App screen orientation : landscape or portrait
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
@@ -69,9 +57,7 @@ Future<void> main() async {
     );
   }, (error, stackTrace) {
     FirebaseCrashlytics.instance.recordError(error, stackTrace);
-    debugPrint(
-      "********* " + error.toString(),
-    );
+    debugPrint("*********" + error.toString());
   });
 }
 
@@ -87,8 +73,128 @@ class FlutterApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      // home: const MyHomePage(title: 'Flutter App'),
+      // home: const FirebasePush(title: 'Flutter App'),
+      // home: FirebasePush(title: "Firebase Push"),
       home: PushNotifications(),
+    );
+  }
+}
+
+class FirebasePush extends StatefulWidget {
+  FirebasePush({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _FirebasePushState createState() => _FirebasePushState();
+}
+
+class _FirebasePushState extends State<FirebasePush> {
+  int _counter = 0;
+  String token = "";
+  @override
+  void initState() {
+    super.initState();
+    getToken();
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              color: Colors.blue,
+              playSound: true,
+              icon: '@mipmap/ic_launcher',
+            ),
+          ),
+        );
+      }
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {
+        showDialog(
+            context: context,
+            builder: (_) {
+              return AlertDialog(
+                title: Text(notification.title!),
+                content: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(notification.body!),
+                    ],
+                  ),
+                ),
+              );
+            });
+      }
+    });
+  }
+
+  void getToken() async {
+    await FirebaseMessaging.instance.getToken().then((token) {
+      setState(() {
+        token = token;
+        debugPrint("*****************************************");
+        debugPrint(token);
+        debugPrint("*****************************************");
+      });
+    });
+  }
+
+  void showNotification() {
+    setState(() {
+      _counter++;
+    });
+    flutterLocalNotificationsPlugin.show(
+      0,
+      "Testing $_counter",
+      "How you doin ?",
+      NotificationDetails(
+        android: AndroidNotificationDetails(channel.id, channel.name,
+            importance: Importance.high,
+            color: Colors.blue,
+            playSound: true,
+            icon: '@mipmap/ic_launcher'),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: showNotification,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ),
     );
   }
 }

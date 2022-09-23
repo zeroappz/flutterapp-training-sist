@@ -1,21 +1,17 @@
+import 'package:flutterapp/services/notify_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutterapp/services/notify_service.dart';
 import 'package:flutterapp/values/app_lib.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
-  'high_importance_channel',
-  'High Importance Notification',
-  importance: Importance.high,
-  playSound: true,
-);
-
+    'high_importance_channel', // id
+    'High Importance Notifications', // title// description
+    importance: Importance.high,
+    playSound: true);
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-//We are gonna capture the remote notification even if it from background
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // Initialize Firebase
   await Firebase.initializeApp();
   debugPrint("******************");
   debugPrint(" Background message has been captured : ${message.messageId}");
@@ -35,7 +31,6 @@ class _PushNotificationsState extends State<PushNotifications> {
   final LocalNotificationService _notifyService = LocalNotificationService();
 
   String token = "";
-  // Life Cycle
   @override
   void initState() {
     super.initState();
@@ -43,29 +38,28 @@ class _PushNotificationsState extends State<PushNotifications> {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
-
       if (notification != null && android != null) {
         flutterLocalNotificationsPlugin.show(
           notification.hashCode,
-          notification.title!,
-          notification.body!,
+          notification.title,
+          notification.body,
           NotificationDetails(
-            android: AndroidNotificationDetails(channel.id, channel.name,
-                color: Colors.blue,
-                playSound: true,
-                icon: '@mipmap/ic_launcher'),
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              color: Colors.blue,
+              playSound: true,
+              icon: '@mipmap/ic_launcher',
+            ),
           ),
         );
       }
     });
 
-    // Open Notification
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      debugPrint("New message have been opened with event published");
-
+      print('A new onMessageOpenedApp event was published!');
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
-
       if (notification != null && android != null) {
         showDialog(
             context: context,
@@ -75,7 +69,9 @@ class _PushNotificationsState extends State<PushNotifications> {
                 content: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [Text(notification.body!)],
+                    children: [
+                      Text(notification.body!),
+                    ],
                   ),
                 ),
               );
@@ -84,27 +80,28 @@ class _PushNotificationsState extends State<PushNotifications> {
     });
   }
 
-  //Fetch device token from firebase
   void getToken() async {
     await FirebaseMessaging.instance.getToken().then((token) {
-      // we are setting up the  state management for data manipulation
       setState(() {
         token = token;
-        debugPrint("************************");
+        debugPrint("*****************************************");
         debugPrint(token);
-        debugPrint("************************");
+        debugPrint("*****************************************");
       });
     });
   }
 
-  Future<void> showNotification() async {
-    await flutterLocalNotificationsPlugin.show(
+  void showNotification() {
+    flutterLocalNotificationsPlugin.show(
       0,
-      'Big Billion Day',
-      "Hurray!, India's best offers are available right now in Flipkart",
+      "Testing",
+      "How you doing?",
       NotificationDetails(
         android: AndroidNotificationDetails(channel.id, channel.name,
-            color: Colors.blue, playSound: true, icon: '@mipmap/ic_launcher'),
+            importance: Importance.high,
+            color: Colors.blue,
+            playSound: true,
+            icon: '@mipmap/ic_launcher'),
       ),
     );
   }
@@ -173,10 +170,10 @@ class _PushNotificationsState extends State<PushNotifications> {
                 const SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: () async {
-                    await showNotification();
+                    showNotification();
                   },
                   child: Text(
-                    'Firebase Notification',
+                    'Firebase Notifications',
                   ),
                 ),
               ],
