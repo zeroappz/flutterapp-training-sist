@@ -25,6 +25,8 @@ dependencies:
   firebase_crashlytics: 
   firebase_core: 
   flutter_local_notifications: 
+  firebase_messaging: 
+  http:
   # package: empty, any, exact version, relative version
 
 dev_dependencies:
