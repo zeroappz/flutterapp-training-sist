@@ -1,6 +1,7 @@
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutterapp/view/auth/google_login.dart';
 import 'package:flutterapp/view/notifications.dart';
 // import 'package:flutterapp/view/notifications.dart';
 import '../services/notify_service.dart';
@@ -75,7 +76,7 @@ class FlutterApp extends StatelessWidget {
       ),
       // home: const FirebasePush(title: 'Flutter App'),
       // home: FirebasePush(title: "Firebase Push"),
-      home: PushNotifications(),
+      home: GoogleSignInScreen(),
     );
   }
 }
@@ -92,6 +93,7 @@ class FirebasePush extends StatefulWidget {
 class _FirebasePushState extends State<FirebasePush> {
   int _counter = 0;
   String token = "";
+
   @override
   void initState() {
     super.initState();
