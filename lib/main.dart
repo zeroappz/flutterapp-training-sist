@@ -1,8 +1,9 @@
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutterapp/view/auth/google_login.dart';
-import 'package:flutterapp/view/notifications.dart';
+// import 'package:flutterapp/view/auth/google_login.dart';
+import 'package:flutterapp/view/dynamic_screen.dart';
+// import 'package:flutterapp/view/notifications.dart';
 // import 'package:flutterapp/view/notifications.dart';
 import '../services/notify_service.dart';
 import '../values/app_lib.dart';
@@ -21,7 +22,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  print('A bg message just showed up :  ${message.messageId}');
+  debugPrint('A bg message just showed up :  ${message.messageId}');
 }
 
 Future<void> main() async {
@@ -76,7 +77,7 @@ class FlutterApp extends StatelessWidget {
       ),
       // home: const FirebasePush(title: 'Flutter App'),
       // home: FirebasePush(title: "Firebase Push"),
-      home: GoogleSignInScreen(),
+      home: DynamicScreen(),
     );
   }
 }

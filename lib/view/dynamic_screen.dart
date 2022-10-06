@@ -1,3 +1,5 @@
+import 'package:flutterapp/services/api_services.dart';
+
 import '../values/app_lib.dart';
 
 class DynamicScreen extends StatefulWidget {
@@ -11,10 +13,31 @@ class _DynamicScreenState extends State<DynamicScreen> {
   // Load global Widget
   final _globalWidget = GlobalWidget();
 
+  late Map<String, dynamic>
+      output; // late object - this will make understand that later the data will be provided for sure
+
+  // API services are loaded
+  Future<Map<String, dynamic>> _distanceMatrixAPI() async {
+    output = await APIServices().getDistanceMatrixAPI(
+        'Salem, Tamilnadu, India', 'Chennai, Tamilnadu, India');
+    debugPrint("*********");
+    debugPrint(output.toString());
+    debugPrint("*********");
+    return output;
+  }
+
   // initState
   @override
   void initState() {
     super.initState();
+
+    // fetching the data on loading the page
+    _distanceMatrixAPI().then((distanceObj) {
+      debugPrint(distanceObj.toString());
+      debugPrint(distanceObj["destination_addresses"].toString());
+      Fluttertoast.showToast(
+          msg: distanceObj["destination_addresses"].toString());
+    });
   }
 
   // dispose State
@@ -62,6 +85,22 @@ class _DynamicScreenState extends State<DynamicScreen> {
             },
             child: Text("Toast Message"),
           ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Text("Origin: " + output["origin_addresses"].toString()),
+          SizedBox(
+            height: 20.0,
+          ),
+          Text("Destination: " + output["destination_addresses"].toString()),
+          SizedBox(
+            height: 20.0,
+          ),
+          Text("Distance: " + output["rows"].toString()),
+          SizedBox(
+            height: 20.0,
+          ),
+          Text("Distance: " + output["rows"].toString()),
         ],
       ),
     );

@@ -66,3 +66,21 @@ samples, guidance on mobile development, and a full API reference.
 ## Local & Cloud Push Notifications
     - add package "flutter_local_notifications"
     - https://chat.whatsapp.com/HTXUMH0Ovnq3AFDYiw0DZd
+
+## Firebase based Authentications
+    - Sign in with google
+    - Sign in with Email and Password
+
+## Google Console APIs
+    - https://console.cloud.google.com/apis/library?project=algoxfusion-training
+    - Add APIs you want
+    - Check it in the dashboard
+    - Distance Matrix (to find the distance and time between two locations)
+
+## REST API Integrations (Object response - JSON)
+    - HTTP(Protocols)
+        - GET (fetch records or information)
+        - PUT 
+        - POST
+        - DELETE
+    - Database - Server - (HTTP - JSON) Service - converted to Map(dart) - Data Interpolating
