@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutterapp/models/covid_information_model.dart';
+
 import '../values/app_lib.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,6 +28,21 @@ class APIServices {
     debugPrint("----------------------");
     debugPrint(response.bodyBytes.toString());
     debugPrint("----------------------");
+
+    // response will be in the form of JSON - convert the JSON to MAP object
+    Map<String, dynamic> responseMap = json.decode(
+      utf8.decode(
+        response.bodyBytes,
+      ),
+    );
+
+    return responseMap;
+  }
+
+  // Future response to fetch covid information
+  Future covidInformation() async {
+    var finalUrl = 'https://api.covid19india.org/data.json';
+    final response = await http.get(Uri.parse(finalUrl));
 
     // response will be in the form of JSON - convert the JSON to MAP object
     Map<String, dynamic> responseMap = json.decode(
