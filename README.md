@@ -84,3 +84,15 @@ samples, guidance on mobile development, and a full API reference.
         - POST
         - DELETE
     - Database - Server - (HTTP - JSON) Service - converted to Map(dart) - Data Interpolating
+
+## APP Hosting In PlayStore
+    - Prerequisites
+    - Google Account (person or enterprise)
+    - Developer Account ($25/year)
+    - You are ready to host any number of applications
+    - focus on security before hosting (add policies and terms)
+    - [Register Developer Account](https://play.google.com/console/signup)
+    - flutter build apk - to get release build apk
+### Flutter release build file using command line
+    - flutter build apk --release --no-sound-null-safety
+    - flutter build apk --release --target-platform android-arm,android-arm64 --split-per-abi --no-sound-null-safety

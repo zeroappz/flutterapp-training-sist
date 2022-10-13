@@ -63,7 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
               // ),
               actions: [
                 // action: [] is a list of widgets
-                IconButton(icon: Icon(Icons.add), onPressed: _incrementCounter),
+                IconButton(
+                    icon: const Icon(Icons.add), onPressed: _incrementCounter),
                 IconButton(
                   icon: Icon(Icons.delete),
                   onPressed: () {
